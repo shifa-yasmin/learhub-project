@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LearnHub Login</title>
+    </head>
+    <body>
+        <h1>Login to LearnHub</h1>
+
+        {% if form.errors %}
+        <p>Invalid username or password. Please try again.</p>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="hidden" name="next" value="{{ next|default:'' }}">
+            <button type="submit">Login</button>
+        </form>
+        <p>
+            New user?
+            <a href="{% url 'register' %}">Register Here</a>
+        </p>
+    </body>
+</html>

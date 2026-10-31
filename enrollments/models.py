@@ -1,6 +1,4 @@
 
-
-# Create your models here.
 from django.db import models
 from django.conf import settings
 
@@ -12,11 +10,13 @@ class Enrollment(models.Model):
         related_name="enrollments",
         limit_choices_to={"role": "student"},
     )
+
     course = models.ForeignKey(
         "courses.Course",
         on_delete=models.CASCADE,
         related_name="enrollments",
     )
+
     enrolled_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -25,6 +25,10 @@ class Enrollment(models.Model):
                 fields=["student", "course"],
                 name="unique_student_course_enrollment",
             )
+        ]
+
+        permissions = [
+            ("can_manage_enrollments", "Can manage enrollments"),
         ]
 
     def __str__(self):

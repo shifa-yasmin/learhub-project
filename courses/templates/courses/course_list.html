@@ -1,0 +1,44 @@
+
+{% for course in courses %}
+    <div>
+        <h2>{{ course.title }}</h2>
+
+        <p>{{ course.description }}</p>
+
+        <p>Price: {{ course.price }}</p>
+
+        {% if course.id in enrolled_course_ids %}
+
+            <button disabled>Already Enrolled</button>
+
+        {% else %}
+
+            <form method="POST"
+                  action="{% url 'enrollments:enroll_course' course.id %}">
+
+                {% csrf_token %}
+
+                <button type="submit">Enroll</button>
+
+            </form>
+
+        {% endif %}
+    </div>
+{% empty %}
+    <p>No courses available.</p>
+{% endfor %}
+
+
+
+<!-- {% for course in courses %}
+    <div>
+        <h2>{{ course.title }}</h2>
+        <p>{{ course.description }}</p>
+        <p>Price: {{ course.price }}</p>
+
+        <form method="POST" action="{% url 'enrollments:enroll_course' course.id %}">
+            {% csrf_token %}
+            <button type="submit">Enroll</button>
+        </form>
+    </div>
+{% endfor %} -->

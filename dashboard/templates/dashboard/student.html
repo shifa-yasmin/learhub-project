@@ -1,0 +1,7 @@
+<h1>Student Dashboard</h1>
+<p>Browse courses, enroll, and access learning materials.</p>
+
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>

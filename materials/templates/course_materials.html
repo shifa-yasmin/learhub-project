@@ -1,0 +1,11 @@
+<h1>{{ course.title }} - Learning Materials</h1>
+
+{% for material in materials %}
+    <div>
+        <h2>{{ material.title }}</h2>
+        <p>{{ material.get_material_type_display }}</p>
+        <a href="{{ material.resource_url }}">Open material</a>
+    </div>
+{% empty %}
+    <p>No materials have been added.</p>
+{% endfor %}

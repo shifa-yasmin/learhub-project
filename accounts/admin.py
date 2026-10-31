@@ -14,5 +14,4 @@ class CustomUserAdmin(UserAdmin):
         ("LearnHub Information", {"fields": ("role",)}),
     )
 
-
 admin.site.register(UserProfile)

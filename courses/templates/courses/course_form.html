@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Course</title>
+</head>
+<body>
+
+    <h1>Create New Course</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <h2>Course Details</h2>
+
+        {{ form.as_p }}
+
+        <h2>Learning Materials</h2>
+
+        {{ formset.management_form }}
+
+        {% for material_form in formset %}
+            <div>
+                <h3>Material {{ forloop.counter }}</h3>
+
+                {{ material_form.as_p }}
+
+                {% if material_form.errors %}
+                    {{ material_form.errors }}
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit">Create Course</button>
+    </form>
+
+</body>
+</html>

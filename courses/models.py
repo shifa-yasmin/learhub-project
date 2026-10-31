@@ -1,6 +1,3 @@
-
-
-# Create your models here.
 from django.db import models
 from django.conf import settings
 
@@ -19,15 +16,17 @@ class Course(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="created_courses",
-        limit_choices_to={"role": "instructor"},
     )
-    categories = models.ManyToManyField(
-        Category,
-        related_name="courses",
-        blank=True,
-    )
-    price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    categories = models.ManyToManyField(Category)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    is_published = models.BooleanField(default=False)
+
+    class Meta:
+        permissions = [
+            ("can_publish_course", "Can publish course"),
+        ]
 
     def __str__(self):
         return self.title

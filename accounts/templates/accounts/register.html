@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LearnHub Registraction</title>
+    </head>
+    <body>
+        <h1>Create a Learnhub Account</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button type="submit">Register</button>
+        </form>
+        <p>
+            Already Registerd?
+            <a href="{% url 'login' %}">Login</a>
+        </p>
+    </body>
+</html>
